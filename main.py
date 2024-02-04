@@ -6,8 +6,19 @@ TOKEN_API = "6911956163:AAEHbnfX9lO78oBGqTOZwWJI0oSUx66e2Lk"
 bot = Bot(TOKEN_API)
 dp = Dispatcher(bot)
 
+HELP_COMMAND ='''
+/start - Привет!
+/give - Выводит стикер
+'''
+
+
 async def on_startup(_):
     print('Бот запущен!')
+
+
+@dp.message_handler(commands=['help'])
+async def help_command(message: types.Message):
+    await message.reply(text=HELP_COMMAND)
 
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
